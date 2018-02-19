@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "## These functions calculate the inverse of a matrix and caches it\n\n## This function creates a matrix\nmakeCacheMatrix <- function(x = matrix()) {\n        inv <- NULL\n        \n        ## This part assigns the input argument to the x object in the parent \n        ## environment and assigns the value of NULL to the inv object\n        set <- function(y){\n                x <<- y\n                inv <<- NULL\n        }\n        \n        ## This part retrieves the value of x\n        get <- function() x\n        \n\n        ## This part defines the setter for the inverse\n        setInverse <- function(solveMatrix) inv <<- solveMatrix\n        \n        ## This part defines the getter for the inverse\n        getInverse <- function() inv\n        \n        ## This part assigns each of these functions as elements in a list\n        ## and returns them to the parent environment\n        list(set = set, get = get, setInverse = setInverse, getInverse = \n                     getInverse)\n}\n\n## This function computes the inverse of the special \"matrix\" \n## returned by makeCacheMatrix.\ncacheSolve <- function(x, ...) {\n        \n        ## This part returns a matrix that is the inverse of 'x'\n        cacheSolve <- function(x, ...) {\n                inv <- x$getInverse()\n                if(!is.null(inv)){\n                        message(\"getting cached data \")\n                        return(inv)\n                }\n                data <- x$get()\n                inv <- solve(data)\n                x$setInverse(inv)\n                inv      \n        }\n}",
+    "created" : 1519005419158.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1970240808",
+    "id" : "7F342725",
+    "lastKnownWriteTime" : 1519006171,
+    "last_content_update" : 1519006171839,
+    "path" : "~/Documents/GitHub/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
